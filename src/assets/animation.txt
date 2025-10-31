@@ -1,0 +1,9 @@
+data-aos="fade-up" (slides up)
+
+data-aos="fade-in" (simple fade)
+
+data-aos="fade-left" (slides in from left)
+
+data-aos="fade-right" (slides in from right)
+
+data-aos="zoom-in" (zooms in)

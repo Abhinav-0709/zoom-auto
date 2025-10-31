@@ -1,0 +1,25 @@
+Primary Headings (e.g., "About The Company", "What Our Customers Say"):
+
+Color: text-cyan-400
+
+Paragraphs & Subtext (All regular body text):
+
+Color: text-zinc-400 (Keep this as is for readability)
+
+Primary Buttons (e.g., "Book Your Repair", "Send Message"):
+
+Background: bg-cyan-500 (or bg-cyan-600 for more punch)
+
+Text: text-white (or text-black if you use a lighter cyan)
+
+Icons (e.g., Service icons, Star ratings, Quote icon):
+
+Color: text-cyan-400
+
+Card Headings (e.g., "Engine Diagnostics", "John Mitchell"):
+
+Color: text-white (Keep these white to make the main section headings stand out more. This creates a good hierarchy.)
+
+Hover Effects & Accents (e.g., Form field focus, menu link hover):
+
+Color: text-cyan-400 (for text) or ring-cyan-500 (for focus rings)
