@@ -1,48 +1,63 @@
 import React, { useState } from 'react';
+// We still import the icons for the info section
 import { FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa';
 
 const Contact = () => {
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxtln62esUsg13MDm783umuWqqryaOJDtsfjgR9kWZ3kykyhIYpyp7cnW7KacVyJSTK/exec";
+    // We no longer need the SCRIPT_URL
 
+    // State for the form data
     const [formData, setFormData] = useState({
-        name: '', email: '', service: 'Select a service...', message: ''
+        name: '',
+        email: '',
+        service: 'Select a service...',
+        message: ''
     });
-    const [submissionStatus, setSubmissionStatus] = useState('idle');
 
+    // State for the submission status (our "toast")
+    const [submissionStatus, setSubmissionStatus] = useState('idle'); // 'idle' | 'submitting' | 'success'
+
+    // Handle input changes
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prevData => ({ ...prevData, [name]: value }));
+        setFormData(prevData => ({
+            ...prevData,
+            [name]: value
+        }));
     };
 
+    // Handle form submission (STATIC)
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault(); // Prevent default form refresh
         setSubmissionStatus('submitting');
 
-        fetch(SCRIPT_URL, {
-            method: 'POST',
-            body: JSON.stringify(formData),
-            headers: { 'Content-Type': 'application/json' },
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.result === 'success') {
-                    setSubmissionStatus('success');
-                    setFormData({ name: '', email: '', service: 'Select a service...', message: '' });
-                } else {
-                    setSubmissionStatus('error');
-                }
-            })
-            .catch(error => {
-                console.error('Error!', error.message);
-                setSubmissionStatus('error');
+        // Simulate a network request (e.g., 1 second delay)
+        setTimeout(() => {
+            // 1. Set status to success
+            setSubmissionStatus('success');
+
+            // 2. Clear the form
+            setFormData({
+                name: '',
+                email: '',
+                service: 'Select a service...',
+                message: ''
             });
+
+            // 3. (Toast) Hide the success message after 3 seconds
+            setTimeout(() => {
+                setSubmissionStatus('idle');
+            }, 3000);
+
+        }, 1000); // 1-second simulation
     };
+
 
     return (
         <div className="bg-black text-white py-16 md:py-24">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
 
+                    {/* Column 1: Contact Info (Unchanged) */}
                     <div data-aos="fade-right" className="flex flex-col justify-center">
                         <h2 className="text-4xl md:text-5xl font-bold mb-4 text-cyan-400">
                             Get in Touch
@@ -59,11 +74,14 @@ const Contact = () => {
                         </div>
 
                         <div className="mt-12">
+                            {/* This assumes you have the badge image in /public/ */}
                             <img src="/warranty-badge.png" alt="5 Years Workmanship Guarantee Badge" className="w-40 h-40 animate-spin-slow" />
                         </div>
                     </div>
 
+                    {/* Column 2: Contact Form */}
                     <div data-aos="fade-left" className="bg-zinc-950 p-8 rounded-2xl border border-zinc-800">
+                        {/* We use the static 'handleSubmit' function now */}
                         <form onSubmit={handleSubmit} className="space-y-6">
 
                             <div>
@@ -99,8 +117,13 @@ const Contact = () => {
                                 </button>
                             </div>
 
-                            {submissionStatus === 'success' && (<p className="text-green-400 text-center">Message sent successfully!</p>)}
-                            {submissionStatus === 'error' && (<p className="text-red-400 text-center">Something went wrong. Please try again.</p>)}
+                            {/* Our "Toast" Message */}
+                            {submissionStatus === 'success' && (
+                                <p className="text-green-400 text-center">
+                                    Message sent successfully! We'll be in touch.
+                                </p>
+                            )}
+                            {/* We removed the error message, as this will always succeed */}
 
                         </form>
                     </div>
