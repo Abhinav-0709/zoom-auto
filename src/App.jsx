@@ -3,7 +3,7 @@ import Hero from './components/Hero'
 import About from './components/About'
 import Services from './components/Services'
 import Contact from './components/Contact'
-import "../src/app.css"
+import './App.css'
 import Footer from './components/Footer'
 import Testimonials from './components/Testimonials'
 import { Element } from 'react-scroll';
